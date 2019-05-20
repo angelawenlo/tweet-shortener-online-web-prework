@@ -1,3 +1,4 @@
+require 'pry'
 # Write your code here.
 def dictionary
   convert = {
@@ -17,7 +18,7 @@ end
 def word_substituter(tweet)
   tweet.split.map do |word|
     if dictionary.keys.include?(word.downcase)
-      new_word = dictionary[word.downcase]
+      word = dictionary[word.downcase]
     else
       word
     end
@@ -25,24 +26,23 @@ def word_substituter(tweet)
 end
 
 def bulk_tweet_shortener(tweet)
-  if tweet.each do |sentence|
-  puts word_substituter(sentence)
-  end
+   tweet.each do |word|
+     puts word_substituter(word)
   end
 end
 
 def selective_tweet_shortener(tweet)
-  if tweet.length > 140
-    word_substituter(tweet)
-  else
-    tweet
+    if tweet.length > 140
+      word_substituter(tweet)
+    else
+      tweet
   end
 end
 
 def shortened_tweet_truncator(tweet)
-    if word_substituter(tweet).length > 140
-      word_substituter(tweet)[0..136] + '...'
-    else
-      tweet
-  end
+  if tweet.length > 140
+    word_substituter(tweet)[0..136] + "..."
+  else
+    tweet
+end
 end
